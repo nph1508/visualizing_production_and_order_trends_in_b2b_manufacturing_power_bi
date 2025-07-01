@@ -34,11 +34,6 @@ Develop an **Operations Dashboard** that enables the Production Director to:
 - Production delays vs. planned schedules  
 - Quality defects during warehouse inspection  
 - Lack of real-time visibility across dispersed storage locations 
- _Example:_
- 
- This project analyzes sales trends and inventory control using SQL and Power BI. The objective is
- - optimize stock levels & improve demand forecasting
- - reduce costs.  
 
 ### 👤 Who is this project for?  
 
@@ -51,23 +46,25 @@ Mention who might benefit from this project
 ✔️ Decision-makers & stakeholders  
 
 ###  ❓Business Questions:  
-Clearly outline what the business questions project will solve.  
-
- _Example:_
-
-✔️ Identify high-demand products and sales trends.  
-✔️ Optimize inventory levels to prevent overstocking or stockouts.  
-✔️ Provide actionable insights through Power BI dashboards.  
+1. Schedule Adherence
+  - What percentage of orders meet planned completion dates?
+  - Which production lines consistently delay?
+2. Quality Control
+  - What are the top 3 defect types found during inspection?
+  - How does defect rate correlate with production shifts?
+3. Inventory Optimization
+  - Which warehouse locations have:
+    - Highest storage turnover?
+    - Most quality incidents?
 
 ### 🎯Project Outcome:  
-Summarize key findings and insights/ trends/ themes in a concise, bullet-point 
-format.  
+| Metric                | Current State | Target Improvement | 
+|---------------------- |---------------|--------------------| 
+| On-Time Completion    | 72%           | +15%               |
+| Defect Rate           | 23.6%         | -8%                |
+| Warehouse Utilization | 68%           | +12%               |
 
- _Example:_
-
-✔️ Sales Trends: The top X% of products generate Y% of revenue.  
-✔️ Inventory Optimization: Certain products are frequently out-of-stock, causing revenue loss.  
-✔️ Customer Behavior: Returning customers spend Z% more per transaction than new customers.  
+**💡 Innovation Opportunity:** Implement machine learning to predict defect risks based on material batch + operator variables
 
 ---
 
