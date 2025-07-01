@@ -172,7 +172,7 @@ Key Features Implemented:
 - Added export functionality for reports
 - Simplified navigation between hierarchy levels
   
-💡 Iterative Improvement: Conducted 3 sprint cycles with stakeholder reviews to refine the final solution
+> Iterative Improvement: Conducted 3 sprint cycles with stakeholder reviews to refine the final solution
 
 ---
 
@@ -188,43 +188,56 @@ Key Features Implemented:
 
 - Explain its purpose and its findings
 
-
 4️⃣ Power BI Visualization  (applicable for PBI Projects)
 
 ---
 
 ## 📊 Key Insights & Visualizations  
-
 ### 🔍 Dashboard Preview  
+#### 1️⃣ Page 1: Manufacturing Overview Dashboard  
+ ![Project3_NgPhuongHuy_page-0001](https://github.com/user-attachments/assets/9be82d5c-56c8-41bf-9b59-79ddb48f5a24)
 
-#### 1️⃣ Dashboard 1 Preview  
-👉🏻 Insert Power BI dashboard screenshots here  
+📌 **Analysis:**  
+- **Observation:**  
+  - Plant-wide OEE at **78.46%** with significant location variance (19%-49%)  
+  - 12-month trend shows July dip (aligns with maintenance period)  
+  - Road products outperform Mountain lines by **12-18% OEE**  
 
-📌 Analysis 1:  
-- Observation: _Describe trends, key metrics, and patterns._  
-- Recommendation: _Suggest actions based on insights._  
+- **Recommendation:**  
+  - Investigate best practices at top-performing location (49%)  
+  - Schedule preventive maintenance during low season  
+  - Cross-train teams between Road/Mountain lines  
 
-#### 2️⃣ Dashboard 2 Preview  
-👉🏻 Insert Power BI dashboard screenshots here
+#### 2️⃣ Page 2: Quality & Performance Dashboard  
+ ![Project3_NgPhuongHuy_page-0002](https://github.com/user-attachments/assets/e3007d2d-b108-4ac3-a698-24a5a724dbc6)
+ 
+📌 **Analysis:**  
+- **Observation:**  
+  - Paint process failures account for **32%** of total scrap  
+  - HL Mountain Frame has highest downtime (**129,168h**)  
+  - Strong correlation: 57.8% scrap rate → 1,440h downtime  
 
-📌 Analysis 2:   
-- Observation: _Describe trends, key metrics, and patterns._  
-- Recommendation: _Suggest actions based on insights._  
-
-#### 3️⃣ Dashboard 3 Preview  
-👉🏻 Insert Power BI dashboard screenshots here  
-
-📌 Analysis 3:  
-- Observation: _Describe trends, key metrics, and patterns._  
-- Recommendation: _Suggest actions based on insights._  
-
+- **Recommendation:**  
+  - Implement paint process audit for HL Mountain line  
+  - Redesign drill size QC checks (top scrap reason)  
+  - Prioritize maintenance for high-downtime assemblies
+ 
 ---
-
 ## 🔎 Final Conclusion & Recommendations  
 
-👉🏻 Based on the insights and findings above, we would recommend the [stakeholder team] to consider the following:  
+👉🏻 Based on the OEE and quality analysis, we recommend the **Production Leadership Team** to prioritize these actions:  
 
-📌 Key Takeaways:  
-✔️ Recommendation 1  
-✔️ Recommendation 2  
-✔️ Recommendation 3
+📌 **Key Takeaways:**  
+✔️ **Immediate Quality Intervention**  
+- Address paint process failures (32% of scrap) through equipment calibration and operator retraining  
+- Implement mandatory drill size checks for HL Mountain Frame line (57.8% defect correlation)  
+
+✔️ **OEE Improvement Plan**  
+- Replicate Road-150 production methods (90.17% OEE) to underperforming lines  
+- Focus on location with 19% OEE through cross-training and process benchmarking  
+
+✔️ **Downtime Reduction**  
+- Schedule preventive maintenance during low season (July trend dip)  
+- Optimize HL Mountain Frame assembly (129,168h downtime) using Lean methodologies  
+
+> 🚀 **Next Steps:** Establish a 30-60-90 day action plan with weekly OEE tracking and scrap rate alerts
