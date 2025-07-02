@@ -1,4 +1,4 @@
-# Power BI for B2B Manufacturing: Visualizing Production & Order Trends
+# Visualizing Production & Order Trends in B2B Manufacturing | Power BI
 Author: Nguyễn Phương Huy
 
 Date: 2000-15-08
