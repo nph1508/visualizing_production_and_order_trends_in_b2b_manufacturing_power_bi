@@ -84,6 +84,8 @@ The dataset consists of **6 main tables** used to build the purchasing dashboard
 | `OutOfStockProducts`   | Out of stock status                           |
 | `ProductID`            | Foreign key to product                        |
 
+</details>
+
 - 🧾 **Production_ScrapReason** – The Reason of Scrap Product.
 
 <details>
@@ -106,6 +108,8 @@ The dataset consists of **6 main tables** used to build the purchasing dashboard
 | `LocationID`                | Location ID      |
 | `Name`                      | Location Name    |
 | `CostRate`,  `Availability` | Location info    |
+
+</details>
 
 #### 2️⃣ Data Relationships: 
 <img width="1394" height="634" alt="image" src="https://github.com/user-attachments/assets/a9a1383e-34e6-4c65-aa6d-536c674fbb98" />
