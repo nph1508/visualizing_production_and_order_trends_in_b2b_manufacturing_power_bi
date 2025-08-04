@@ -114,6 +114,8 @@ Describe the connections between tables—e.g., one-to-many, many-to-many.
 
 **Growth Formula:**  OEE = Availability (%) × Performance (%) × Quality (%)
 
+<img width="1394" height="634" alt="image" src="https://github.com/user-attachments/assets/a9a1383e-34e6-4c65-aa6d-536c674fbb98" />
+
 
 ### 3️⃣ Ideate - Dashboard Framework
 **Information Architecture:**  
