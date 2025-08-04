@@ -1,172 +1,151 @@
 # Visualizing Production & Order Trends in B2B Manufacturing | Power BI
+
+<img src="https://github.com/user-attachments/assets/1f663de1-d2fd-4be7-95d1-6e084a1b2be7" width="100%" />
+
+
 Author: Nguyễn Phương Huy
 
-Date: 2000-15-08
+Date: May 2025
 
 Tools Used: PowerBI
 
 ---
 ## 📑 Table of Contents  
-1. [📌 Background & Overview](#-background--overview)  
-2. [📂 Dataset Description & Data Structure](#-dataset-description--data-structure)  
-3. [🧠 Design Thinking Process](#-design-thinking-process)  
-4. [📊 Key Insights & Visualizations](#-key-insights--visualizations)  
-5. [🔎 Final Conclusion & Recommendations](#-final-conclusion--recommendations)
+[1. 📌 Background & Overview](#1--background--overview)  
+[2. 📂 Dataset Description & Data Structure](#2--dataset-description--data-structure)   
+[3. 🧠 Design Thinking Process](#3--design-thinking-process)  
+[4. 📊 Key Insights & Visualizations](#4--key-insights--visualizations)  
+[5. 🔎 Final Conclusion & Recommendations](#5--final-conclusion--recommendations)
 
 ---
-## 📌 Background & Overview  
+## 1. 📌 Background & Overview 
 
-### 🎯 Objective  
-Develop an **Operations Dashboard** that enables the Production Director to:  
-- Monitor end-to-end manufacturing workflow from material receipt to finished goods  
-- Identify bottlenecks in production timelines  
-- Track quality control metrics in real-time
+**Objective:**
 
-### 🏭 Business Context  
-**Current Process Flow:**  
-1. **Planning Phase:** Receive production requests from Company's Planning Dept  
-2. **Procurement:** Materials ordered and received by Purchasing Team  
-3. **Production:** Manufacturing begins after materials inspection  
-4. **Storage:** Finished goods distributed across multiple warehouse locations  
-5. **Quality Check:** Defective items removed before customer distribution
+**📖 What is this project about?**
 
-**Key Challenges:**  
-- Production delays vs. planned schedules  
-- Quality defects during warehouse inspection  
-- Lack of real-time visibility across dispersed storage locations 
+This project analyzes purchasing activities at **AdventureWorks** to support better operational decisions. The Power BI dashboard focuses on:
 
-### 👤 Who is this project for?  
+- **Manufactoring Performance**: Track production status to facilitate storage and distribution to customers. 
+- **Optimization**: During the warehouse inspection process, there is a possibility that goods will be damaged, and will be rejected to ensure that only quality products are stored for sale.
 
-Mention who might benefit from this project 
+**👤 Who is this project for?**
 
- _Example:_
+This dashboard is designed for key stakeholders involved in the manufactoring process at **AdventureWorks**, including:
 
-✔️ Data analysts & business analysts  
-✔️ Supply chain managers & inventory controllers  
-✔️ Decision-makers & stakeholders  
+ - **Manufactoring Manager**: To monitor supplier performance, order fulfillment, and spot procurement issues early.  
+- **Manufactoring Executive**: To track purchasing KPIs, ensure compliance with procurement strategies, and manage day-to-day operations efficiently.  
+- **Board of Directors (BOD)**: To gain high-level insights into purchasing efficiency and cost control for strategic decision-making.
 
-###  ❓Business Questions:  
-1. Schedule Adherence
-  - What percentage of orders meet planned completion dates?
-  - Which production lines consistently delay?
-2. Quality Control
-  - What are the top 3 defect types found during inspection?
-  - How does defect rate correlate with production shifts?
-3. Inventory Optimization
-  - Which warehouse locations have:
-    - Highest storage turnover?
-    - Most quality incidents?
-
-### 🎯Project Outcome:  
-| Metric                | Current State | Target Improvement | 
-|---------------------- |---------------|--------------------| 
-| On-Time Completion    | 72%           | +15%               |
-| Defect Rate           | 23.6%         | -8%                |
-| Warehouse Utilization | 68%           | +12%               |
-
-**💡 Innovation Opportunity:** Implement machine learning to predict defect risks based on material batch + operator variables
+**❓Business Questions:**
+ - ✔️ What is the current performance of Superstore?
+ - ✔️ Which markets should Superstore expand into to increase revenue and ROI?
+ - ✔️ Which products should be prioritized for strategic growth?
 
 ---
 
-## 📂 Dataset Description & Data Structure  
+## 2. 📂 Dataset Description & Data Structure 
 
-### 📌 Data Source  
-- Source: 
-- Size:  
-- Format:  
+### **📌 Data Source** 
+- **Source**: Kaggle - Dataset of AdventureWorks
+- **Size**: The **Production_WorkOrder** table contains **72.839** records.  
+- **Format**: Pbix 
 
-### 📊 Data Structure & Relationships  
+### 📊 **Data Structure & Relationships**  
 
-#### 1️⃣ Tables Used:  
+#### 1️⃣ **Tables Used:** 
+The dataset consists of **6 main tables** used to build the purchasing dashboard:
 
-#### 2️⃣ Table Schema & Data Snapshot    
+- 🗂️ **Dim_Product** – Product category and hierarchy.
 
-#### 3️⃣ Data Relationships:  
-Describe the connections between tables—e.g., one-to-many, many-to-many.  
+<details>
+<summary><strong>Table 1: Dim_Product</strong></summary>
 
-👉🏻 Include a screenshot of Data Modeling to visualize relationships.  
+| Column Name                 | Description              |
+|-----------------------------|--------------------------|
+| `ProductID`                 | Linked product           |
+| `Name`                      | Product characteristics  |
+| `Category`                  | Product category name    |
+| `Subcategory`               | Product subcategory name |
+| `ListPrice`, `StandardCost` | Price and cost info      |
 
----
+</details>
 
-## 🧠 Design Thinking Process  
+- 🏷️ **Product_Inventory** – Current inventory levels.
 
-**A 5-stage human-centered approach to build actionable dashboards:**  
+<details>
+<summary><strong>Table 2: Product_Inventory</strong></summary>
 
-### 1️⃣ Empathize - Understand User Needs 
-**Đối tượng chính:** Production Director & Operations Team
-**Key Pain Points:**  
- - No real-time overview of production performance
- - Fragmented data from multiple sources (ERP, Excel, IoT)
- - Inability to quickly identify bottlenecks/defects
+| Column Name            | Description                                   |
+|------------------------|-----------------------------------------------|
+| `Quantity`             | Current inventory quantity                    |
+| `Below Reorder Flag`   | Indicates if inventory is below reorder level |
+| `BelowSafetyStock`     | Indicates stock is below safety threshold     |
+| `OutOfStockProducts`   | Out of stock status                           |
+| `ProductID`            | Foreign key to product                        |
 
-**Empathy Map:**  
-| Aspect | Insights |  
-|--------|----------|  
-| **Needs** | Real-time dashboard with auto-alerts + drill-down from overview to machine/process level|  
-| **Frequent Questions** | "Which machine caused defects?", "Actual vs Target comparison?", "3-month KPI trends?"|  
+- 🧾 **Production_ScrapReason** – The Reason of Scrap Product.
 
-### 2️⃣ Define - Frame the Problem 
-**Northstar Metric:**  
-📊 **OEE (Overall Equipment Effectiveness)** - Measures production efficiency through:
-- **Availability** (Uptime vs Planned Production Time)  
-- **Performance** (Actual vs Maximum Speed)  
-- **Quality** (Defect-Free Products)
+<details>
+<summary><strong>Table 3: Production_ScrapReason</strong></summary>
 
-**Growth Formula:**  OEE = Availability (%) × Performance (%) × Quality (%)
+| Column Name     | Description                   |
+|-----------------|-------------------------------|
+| `ScrapReasonID` | Unique ScrapReason identifier |
+| `Name`          | ScrapReason characteristics   |
 
+</details>
+
+- 📄 **Production_Location** – Order-level metadata.
+
+<details>
+<summary><strong>Table 4: Production_Location</strong></summary>
+
+| Column Name                 | Description      |
+|-----------------------------|------------------|
+| `LocationID`                | Location ID      |
+| `Name`                      | Location Name    |
+| `CostRate`,  `Availability` | Location info    |
+
+#### 2️⃣ Data Relationships: 
 <img width="1394" height="634" alt="image" src="https://github.com/user-attachments/assets/a9a1383e-34e6-4c65-aa6d-536c674fbb98" />
 
-
-### 3️⃣ Ideate - Dashboard Framework
-**Information Architecture:**  
-| Layer | Scope | Visualization Examples  |  
-|-------|-------|------------------------ |  
-| **Layer 0** | Executive Summary	 | OEE Scorecard, Defect Rate, Downtime|  
-| **Layer 1** | Machine/Process Level| Downtime Hours, Scrap Rate by Station |  
-
-**Dashboard Structure:**
-1. **Overview Page:** Key OEE metrics (78.46%) with KPI alerts
-2. **Analytics Page:** Granular performance breakdown by product line/machine
-
-### 4️⃣ Prototype (Design Iterations)
-Key Features Implemented:
-- ✅ Dynamic OEE Breakdown Wheel
-- ✅ Machine Status Traffic Light System
-- ✅ Interactive Downtime Pareto Chart
-- ✅ Shift Comparison Matrix  
-
-### 5️⃣ Validate (User Testing)
-**Feedback Implementation:**  
-- Improved color contrast for color-blind users 
-- Added export functionality for reports
-- Simplified navigation between hierarchy levels
-  
-> Iterative Improvement: Conducted 3 sprint cycles with stakeholder reviews to refine the final solution
+| **From Table**                  | **To Table**                     | **Join Key**                | **Relationship Type**                                      |
+|--------------------------------|----------------------------------|-----------------------------|------------------------------------------------------------|
+| `Fact_Purchasing_OrderDetail`  | `Dim_Purchasing_OrderHeader`     | `PurchaseOrderID`           | Many-to-One (many order lines per order header)            |
+| `Fact_Purchasing_OrderDetail`  | `Dim_Product_Product`            | `ProductID`                 | Many-to-One (many order lines for one product)             |
+| `Fact_Purchasing_OrderDetail`  | `Dim_Order_Date`                 | `DueDate` / `ModifiedDate`  | Many-to-One (orders map to one date)                       |
+| `Dim_Purchasing_OrderHeader`   | `Dim_Purchasing_Vendor`          | `VendorID`                  | Many-to-One (multiple orders per vendor)                   |
+| `Dim_Purchasing_ProductVendor` | `Dim_Purchasing_Vendor`          | `VendorID`                  | Many-to-One (vendor supplies many products)                |
+| `Dim_Purchasing_ProductVendor` | `Dim_Product_Product`            | `ProductID`                 | Many-to-One (vendor offers multiple products)              |
+| `Dim_Product_Product`          | `Dim_Product_ProductTaxonomy`    | `ProductSubcategoryID`      | Many-to-One (each product belongs to one subcategory)      |
+| `Fact_Product_Inventory`       | `Dim_Product_Product`            | `ProductID`                 | Many-to-One (each inventory record linked to a product)    |
 
 ---
 
-## ⚒️ Main Process
+## 3. 🧠 Design Thinking Process 
 
-1️⃣ Data Cleaning & Preprocessing  
-2️⃣ Exploratory Data Analysis (EDA)  
-3️⃣ SQL/ Python Analysis 
+*A human-centered approach for actionable insights*  
 
-- In each step, show your Code
+### 1️⃣ Empathize
 
-- Include query/ code execution screenshots or result samples
+### 2️⃣ Define point of view 
 
-- Explain its purpose and its findings
+### 3️⃣ Ideate
 
-4️⃣ Power BI Visualization  (applicable for PBI Projects)
+### 4️⃣ Prototype and review
+
+This part is in the dashboard
 
 ---
 
-## 📊 Key Insights & Visualizations  
-### 🔍 Dashboard Preview  
+## 4. 📊 Key Insights & Visualizations 
+### 🔍 Dashboard Preview 
 #### 1️⃣ Page 1: Manufacturing Overview Dashboard  
- ![Project3_NgPhuongHuy_page-0001](https://github.com/user-attachments/assets/9be82d5c-56c8-41bf-9b59-79ddb48f5a24)
+<img width="2767" height="1600" alt="Visualizing Production   Order Trends in B2B Manufacturing-1" src="https://github.com/user-attachments/assets/4b762c0b-857a-4be9-8973-9729a6542ae7" />
 
-📌 **Analysis:**  
+
+### 📌 Key Findings:
 - **Observation:**  
   - Plant-wide OEE at **78.46%** with significant location variance (19%-49%)  
   - 12-month trend shows July dip (aligns with maintenance period)  
@@ -178,9 +157,9 @@ Key Features Implemented:
   - Cross-train teams between Road/Mountain lines  
 
 #### 2️⃣ Page 2: Quality & Performance Dashboard  
- ![Project3_NgPhuongHuy_page-0002](https://github.com/user-attachments/assets/e3007d2d-b108-4ac3-a698-24a5a724dbc6)
- 
-📌 **Analysis:**  
+ <img width="2767" height="1600" alt="Visualizing Production   Order Trends in B2B Manufacturing-2" src="https://github.com/user-attachments/assets/e422f33b-6e41-4720-b0f2-080fa2b85598" />
+
+### 📌 Key Findings: 
 - **Observation:**  
   - Paint process failures account for **32%** of total scrap  
   - HL Mountain Frame has highest downtime (**129,168h**)  
@@ -190,7 +169,12 @@ Key Features Implemented:
   - Implement paint process audit for HL Mountain line  
   - Redesign drill size QC checks (top scrap reason)  
   - Prioritize maintenance for high-downtime assemblies
- 
+
+ #### 3️⃣ Page 3: Product Analysis Dashboard Preview 
+ <img width="2767" height="1600" alt="Visualizing Production   Order Trends in B2B Manufacturing-3" src="https://github.com/user-attachments/assets/5a6ef9c0-9302-4bd6-82dc-875583cd10db" />
+
+### 📌 Key Findings:
+
 ---
 ## 🔎 Final Conclusion & Recommendations  
 
