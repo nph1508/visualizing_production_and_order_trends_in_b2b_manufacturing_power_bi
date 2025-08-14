@@ -238,19 +238,10 @@ This part is in the dashboard
 ---
 ## 5. 🔎 Final Conclusion & Recommendations
 
-👉🏻 Based on the OEE and quality analysis, we recommend the **Production Leadership Team** to prioritize these actions:  
+| **Strategy** | **Insight** | **Recommendation** |
+| ------------ | ----------- | ------------------ |
+| **⚙️ 1. Production Efficiency Optimization** | - Total Orders: **4,508K**, with **Scrap Products** accounting for only **0.24%** (11K). <br> - **Frame Forming** and **Frame Welding** stages have the highest average costs ($92.25 and $87.5). <br> - Some stages such as **Debur and Polish** and **Paint** consume significant working hours but yield lower proportional output. | - Focus on process improvements in **Frame Forming** & **Frame Welding** to reduce costs. <br> - Optimize workforce allocation in stages with high labor hours but low productivity. <br> - Apply Lean Manufacturing principles to reduce waste and waiting time. |
+| **🛡 2. Scrap Reduction Strategy** | - Top scrap reasons: **Seat assembly not as ordered (3.14%)**, **Drill size too large (2.92%)**, **Paint process failed (2.90%)**. <br> - Products with the highest scrap rates: **ML Road Frame** and **Mountain Frames** (0.75% – 0.63%). <br> - Scrap cost is highest for **ML Crankset ($26K)**. | - Implement stricter quality control at stages with frequent errors. <br> - Provide technician training and review equipment to reduce drilling, painting, and assembly issues. <br> - Consider material or process changes for high scrap rate products. |
+| **⏱ 3. Lead Time & Delivery Improvement** | - Average manufacturing time is **12 days**, yet late delivery ratio is still **58%**. <br> - Products such as **ML Mountain Frame**, **Handlebars**, and **Seat Assembly** require an average of 16 days to produce. <br> - Some items like **Mountain-500 Black** and **Road-750 Black** have average overdue days > 10. | - Adjust production scheduling and order allocation to reduce backlog. <br> - Prioritize process optimization for the slowest products. <br> - Implement KPI tracking for lead time and early warning alerts for at-risk work orders. |
+| **📦 4. Product Mix Optimization** | - **BB Ball Bearing** is the most manufactured product (0.91M) and has no major scrap cost issues. <br> - Certain products have both high scrap rates and high rework costs (ML Road Frame, ML Crankset), impacting profit margins. | - Increase production of stable-quality, high-demand products (BB Ball Bearing, Seat Stays). <br> - Review pricing or improve processes for products that incur significant rework costs. |
 
-📌 **Key Takeaways:**  
-✔️ **Immediate Quality Intervention**  
-- Address paint process failures (32% of scrap) through equipment calibration and operator retraining  
-- Implement mandatory drill size checks for HL Mountain Frame line (57.8% defect correlation)  
-
-✔️ **OEE Improvement Plan**  
-- Replicate Road-150 production methods (90.17% OEE) to underperforming lines  
-- Focus on location with 19% OEE through cross-training and process benchmarking  
-
-✔️ **Downtime Reduction**  
-- Schedule preventive maintenance during low season (July trend dip)  
-- Optimize HL Mountain Frame assembly (129,168h downtime) using Lean methodologies  
-
-> 🚀 **Next Steps:** Establish a 30-60-90 day action plan with weekly OEE tracking and scrap rate alerts
