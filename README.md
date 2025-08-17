@@ -71,59 +71,112 @@ The dataset consists of **6 main tables** used to build the purchasing dashboard
 
 </details>
 
-- 🏷️ **Product_Inventory** – Current inventory levels.
+- 🏷️ **Product_Inventory** – Inventory details
 
 <details>
 <summary><strong>Table 2: Product_Inventory</strong></summary>
 
-| Column Name            | Description                                   |
-|------------------------|-----------------------------------------------|
-| `Quantity`             | Current inventory quantity                    |
-| `Below Reorder Flag`   | Indicates if inventory is below reorder level |
-| `BelowSafetyStock`     | Indicates stock is below safety threshold     |
-| `OutOfStockProducts`   | Out of stock status                           |
-| `ProductID`            | Foreign key to product                        |
+| Column Name   | Description                        |
+|---------------|------------------------------------|
+| `ProductID`   | Linked product                     |
+| `LocationID`  | Linked location (FK → Location)    |
+| `Quantity`    | Inventory quantity                 |
+| `Bin`, `Shelf`| Storage placement details          |
+| `rowguid`     | Unique identifier (GUID)           |
+| `ModifiedDate`| Last update date                   |
 
 </details>
 
-- 🧾 **Production_ScrapReason** – The Reason of Scrap Product.
+- 🧾 **Production_ScrapReason** – Lookup for scrap reasons
 
 <details>
 <summary><strong>Table 3: Production_ScrapReason</strong></summary>
 
-| Column Name     | Description                   |
-|-----------------|-------------------------------|
-| `ScrapReasonID` | Unique ScrapReason identifier |
-| `Name`          | ScrapReason characteristics   |
+| Column Name    | Description                |
+|----------------|----------------------------|
+| `ScrapReasonID`| Scrap reason identifier    |
+| `Name`         | Scrap reason description   |
+| `ModifiedDate` | Last update date           |
 
 </details>
 
-- 📄 **Production_Location** – Order-level metadata.
+- 📄 **Production_Location** – Production site information
 
 <details>
 <summary><strong>Table 4: Production_Location</strong></summary>
 
-| Column Name                 | Description      |
-|-----------------------------|------------------|
-| `LocationID`                | Location ID      |
-| `Name`                      | Location Name    |
-| `CostRate`,  `Availability` | Location info    |
+| Column Name   | Description                      |
+|---------------|----------------------------------|
+| `LocationID`  | Unique location ID               |
+| `Name`        | Location name                    |
+| `Availability`| Location availability capacity   |
+| `CostRate`    | Cost rate per unit resource      |
+| `ModifiedDate`| Last update date                 |
+
+</details>
+
+- 🗂️ **Production_WorkOrder** – Core fact table containing production order details.
+
+<details>
+<summary><strong>Table 5: Production_WorkOrder</strong></summary>
+
+| Column Name     | Description                                |
+|-----------------|--------------------------------------------|
+| `WorkOrderID`   | Unique production order ID                 |
+| `ProductID`     | Linked product (FK → Dim_Product)          |
+| `OrderQty`      | Quantity ordered                           |
+| `ScrappedQty`   | Quantity scrapped                          |
+| `ScrapReasonID` | Scrap reason (FK → Production_ScrapReason) |
+| `StartDate`     | Planned start date                         |
+| `EndDate`       | Planned end date                           |
+| `DueDate`       | Required completion date                   |
+| `StockedQty`    | Quantity stocked after production          |
+| `ModifiedDate`  | Last update date                           |
+
+</details>
+
+- 🔗 **Production_WorkOrderRouting** – Routing and operation details
+
+<details>
+<summary><strong>Table 6: Production_WorkOrderRouting</strong></summary>
+
+| Column Name         | Description                                |
+|---------------------|--------------------------------------------|
+| `WorkOrderID`       | Linked production order (FK → WorkOrder)   |
+| `ProductID`         | Linked product                             |
+| `LocationID`        | Production location (FK → Location)        |
+| `ScheduledStartDate`| Planned start time                         |
+| `ScheduledEndDate`  | Planned end time                           |
+| `ActualStartDate`   | Actual start time                          |
+| `ActualEndDate`     | Actual end time                            |
+| `PlannedCost`       | Planned production cost                    |
+| `ActualCost`        | Actual cost incurred                       |
+| `ActualResourceHrs` | Actual resource hours consumed             |
+| `OperationSequence` | Operation step in routing                  |
+| `DeliveryStatus`    | Status of order delivery                   |
+| `ModifiedDate`      | Last update date                           |
 
 </details>
 
 #### 2️⃣ Data Relationships: 
 <img width="1394" height="634" alt="image" src="https://github.com/user-attachments/assets/a9a1383e-34e6-4c65-aa6d-536c674fbb98" />
 
-| **From Table**                  | **To Table**                     | **Join Key**                | **Relationship Type**                                      |
-|--------------------------------|----------------------------------|-----------------------------|------------------------------------------------------------|
-| `Fact_Purchasing_OrderDetail`  | `Dim_Purchasing_OrderHeader`     | `PurchaseOrderID`           | Many-to-One (many order lines per order header)            |
-| `Fact_Purchasing_OrderDetail`  | `Dim_Product_Product`            | `ProductID`                 | Many-to-One (many order lines for one product)             |
-| `Fact_Purchasing_OrderDetail`  | `Dim_Order_Date`                 | `DueDate` / `ModifiedDate`  | Many-to-One (orders map to one date)                       |
-| `Dim_Purchasing_OrderHeader`   | `Dim_Purchasing_Vendor`          | `VendorID`                  | Many-to-One (multiple orders per vendor)                   |
-| `Dim_Purchasing_ProductVendor` | `Dim_Purchasing_Vendor`          | `VendorID`                  | Many-to-One (vendor supplies many products)                |
-| `Dim_Purchasing_ProductVendor` | `Dim_Product_Product`            | `ProductID`                 | Many-to-One (vendor offers multiple products)              |
-| `Dim_Product_Product`          | `Dim_Product_ProductTaxonomy`    | `ProductSubcategoryID`      | Many-to-One (each product belongs to one subcategory)      |
-| `Fact_Product_Inventory`       | `Dim_Product_Product`            | `ProductID`                 | Many-to-One (each inventory record linked to a product)    |
+| **From Table**                      | **To Table**                      | **Join Key**                                                | **Relationship Type**                                                  |
+|------------------------------------|-----------------------------------|-------------------------------------------------------------|------------------------------------------------------------------------|
+| `Production_WorkOrder`             | `Dim_Product`                     | `ProductID`                                                 | Many-to-One (many work orders per product)                             |
+| `Production_WorkOrderRouting`      | `Dim_Product`                     | `ProductID`                                                 | Many-to-One (many routing rows per product)                            |
+| `Production_WorkOrderRouting`      | `Production_WorkOrder`            | `WorkOrderID`                                               | Many-to-One (many routing steps per work order)                        |
+| `Production_WorkOrderRouting`      | `Production_Location`             | `LocationID`                                                | Many-to-One (many operations at one location)                          |
+| `Production_WorkOrder`             | `Production_ScrapReason`          | `ScrapReasonID`                                             | Many-to-One (many work orders share one scrap reason)                  |
+| `Product_Inventory`                | `Dim_Product`                     | `ProductID`                                                 | Many-to-One (many inventory rows per product)                          |
+| `Product_Inventory`                | `Production_Location`             | `LocationID`                                                | Many-to-One (many inventory rows per location)                         |
+| `Production_WorkOrder`             | `Dim_Date`                        | `StartDate` → `Date`                                        | Many-to-One (each work order start maps to one calendar date)          |
+| `Production_WorkOrder`             | `Dim_Date`                        | `EndDate` → `Date`                                          | Many-to-One (each work order end maps to one calendar date)            |
+| `Production_WorkOrder`             | `Dim_Date`                        | `DueDate` → `Date`                                          | Many-to-One (each work order due maps to one calendar date)            |
+| `Production_WorkOrderRouting`      | `Dim_Date`                        | `ScheduledStartDate` → `Date`                               | Many-to-One (each scheduled start maps to one calendar date)           |
+| `Production_WorkOrderRouting`      | `Dim_Date`                        | `ScheduledEndDate` → `Date`                                 | Many-to-One (each scheduled end maps to one calendar date)             |
+| `Production_WorkOrderRouting`      | `Dim_Date`                        | `ActualStartDate` → `Date`                                  | Many-to-One (each actual start maps to one calendar date)              |
+| `Production_WorkOrderRouting`      | `Dim_Date`                        | `ActualEndDate` → `Date`                                    | Many-to-One (each actual end maps to one calendar date)                |
 
 ---
 
