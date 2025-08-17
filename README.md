@@ -133,9 +133,18 @@ The dataset consists of **6 main tables** used to build the purchasing dashboard
 
 ### 1️⃣ Empathize
 
-### 2️⃣ Define point of view 
+<img width="4000" height="2250" alt="PowerBi_Project3-1" src="https://github.com/user-attachments/assets/3782d742-b5a0-48ca-99c1-6c74dd0a993e" />
+<img width="4000" height="2250" alt="PowerBi_Project3-2" src="https://github.com/user-attachments/assets/b358b626-9749-44cd-9782-377b975fe27e" />
+
+### 2️⃣ Define point of view
+
+<img width="4000" height="2250" alt="PowerBi_Project3-3" src="https://github.com/user-attachments/assets/135d1da2-0ed1-4e67-a639-e5fe0411a3fe" /
+<img width="4000" height="2250" alt="PowerBi_Project3-4" src="https://github.com/user-attachments/assets/ffef41e5-ee7e-44ed-9ede-a27f53e00220" />
 
 ### 3️⃣ Ideate
+
+<img width="4000" height="2250" alt="PowerBi_Project3-5" src="https://github.com/user-attachments/assets/4b6d06f4-983f-44d4-9158-7bfae3d5a95f" />
+<img width="4000" height="2250" alt="PowerBi_Project3-6" src="https://github.com/user-attachments/assets/b0b67fc1-914f-491f-b56a-9a85d105cc54" />
 
 ### 4️⃣ Prototype and review
 
